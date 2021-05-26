@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Logon Utility SMS
- * Plugin URI: https://www.logonutility.com/plugins/wordpress.zip
+ * Plugin URI: https://github.com/ashishkakar/wordpress-sms-plugin.git
  * Description: This plugin is used to add SMS functionality to yur Wordpress site. 
  * Version: 1.0.2
  * Requires at least: 5.7.1
@@ -98,7 +98,7 @@ function view_live_sms_broadcast() {
 		$message = urlencode($_POST['message']);
 		$entityid = $_POST['entityid'];
 		$templateid = $_POST['templateid'];
-		$tlv = urlencode(json_encode(array('EntityID'=>$entityid, 'ContentID'=>$templateid)));
+		$tlv = json_encode(array('EntityID'=>$entityid, 'ContentID'=>$templateid));
 		$url = "https://module.logonutility.com/smsapi/index?key=$key&campaign=$campaign&routeid=$route&type=text&contacts=$contacts&senderid=$senderid&msg=$message&tlv=$tlv";
 		wp_remote_get($url);
 		
