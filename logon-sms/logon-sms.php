@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Logon Utility SMS
- * Plugin URI: https://www.logonutility.com/plugins/wordpress.zip
+ * Plugin URI: https://github.com/ashishkakar/wordpress-sms-plugin.git
  * Description: This plugin is used to add SMS functionality to yur Wordpress site. 
  * Version: 1.0.2
  * Requires at least: 5.7.1
@@ -174,77 +174,73 @@ function call_sms_api($var1=null, $var2=null, $var3=null, $var4=null, $var5=null
 	if((current_filter()=='woocommerce_order_status_completed' || current_filter()=='woocommerce_order_status_cancelled'  || current_filter()=='woocommerce_order_status_pending' || current_filter()=='woocommerce_order_status_failed' || current_filter()=='woocommerce_order_status_on-hold' || current_filter()=='woocommerce_order_status_processing' || current_filter()=='woocommerce_order_status_refunded') && $var1!=null) {
 		foreach($params as $key=>$value) {
 			$order = new WC_Order ($var1);
-			preg_replace('/\[billing_address_1\]/', $order->get_billing_address_1(), $value);
-			preg_replace('/\[billing_address_2\]/', $order->get_billing_address_2(), $value);
-			preg_replace('/\[billing_city\]/', $order->get_billing_city(), $value);
-			preg_replace('/\[billing_company\]/', $order->get_billing_company(), $value);
-			preg_replace('/\[billing_country\]/', $order->get_billing_country(), $value);
-			preg_replace('/\[billing_email\]/', $order->get_billing_email(), $value);
-			preg_replace('/\[billing_first_name\]/', $order->get_billing_first_name(), $value);
-			preg_replace('/\[billing_last_name\]/', $order->get_billing_last_name(), $value);
-			preg_replace('/\[billing_phone\]/', $order->get_billing_phone(), $value);
-			preg_replace('/\[billing_postcode\]/', $order->get_billing_postcode(), $value);
-			preg_replace('/\[billing_state\]/', $order->get_billing_state(), $value);
-			preg_replace('/\[cart_tax\]/', $order->get_cart_tax(), $value);
-			preg_replace('/\[currency\]/', $order->get_currency(), $value);
-			preg_replace('/\[customer_id\]/', $order->get_customer_id(), $value);
-			preg_replace('/\[customer_ip_address\]/', $order->get_customer_ip_address(), $value);
-			preg_replace('/\[customer_user_agent\]/', $order->get_customer_user_agent(), $value);
-			preg_replace('/\[date_completed\]/', $order->get_date_completed().__toString(), $value);
-			preg_replace('/\[date_created\]/', $order->get_date_created().__toString(), $value);
-			preg_replace('/\[date_modified\]/', $order->get_date_modified().__toString(), $value);
-			preg_replace('/\[date_paid\]/', $order->get_date_paid().__toString, $value);
-			preg_replace('/\[discount_tax\]/', $order->get_discount_tax(), $value);
-			preg_replace('/\[discount_to_display\]/', $order->get_discount_to_display(), $value);
-			preg_replace('/\[discount_total\]/', $order->get_discount_total(), $value);
-			preg_replace('/\[formatted_billing_address\]/', $order->get_formatted_billing_address(), $value);
-			preg_replace('/\[formatted_billing_full_name\]/', $order->get_formatted_billing_full_name(), $value);
-			preg_replace('/\[formatted_line_subtotal\]/', $order->get_formatted_line_subtotal(), $value);
-			preg_replace('/\[formatted_order_total\]/', $order->get_formatted_order_total(), $value);
-			preg_replace('/\[formatted_shipping_address\]/', $order->get_formatted_shipping_address(), $value);
-			preg_replace('/\[formatted_shipping_full_name\]/', $order->get_formatted_shipping_full_name(), $value);
-			preg_replace('/\[id\]/', $order->get_id(), $value);
-			preg_replace('/\[line_subtotal\]/', $order->get_line_subtotal(), $value);
-			preg_replace('/\[line_tax\]/', $order->get_line_tax(), $value);
-			preg_replace('/\[line_total\]/', $order->get_line_total(), $value);
-			preg_replace('/\[order_number\]/', $order->get_order_number(), $value);
-			preg_replace('/\[payment_method\]/', $order->get_payment_method(), $value);
-			preg_replace('/\[payment_method_title\]/', $order->get_payment_method_title(), $value);
-			preg_replace('/\[qty_refunded_for_item\]/', $order->get_qty_refunded_for_item(), $value);
-			preg_replace('/\[rounded_items_total\]/', $order->get_rounded_items_total(), $value);
-			preg_replace('/\[shipping_address_1\]/', $order->get_shipping_address_1(), $value);
-			preg_replace('/\[shipping_address_2\]/', $order->get_shipping_address_2(), $value);
-			preg_replace('/\[shipping_city\]/', $order->get_shipping_city(), $value);
-			preg_replace('/\[shipping_company\]/', $order->get_shipping_company(), $value);
-			preg_replace('/\[shipping_country\]/', $order->get_shipping_country(), $value);
-			preg_replace('/\[shipping_first_name\]/', $order->get_shipping_first_name(), $value);
-			preg_replace('/\[shipping_last_name\]/', $order->get_shipping_last_name(), $value);
-			preg_replace('/\[shipping_method\]/', $order->get_shipping_method(), $value);
-			preg_replace('/\[shipping_postcode\]/', $order->get_shipping_postcode(), $value);
-			preg_replace('/\[shipping_state\]/', $order->get_shipping_state(), $value);
-			preg_replace('/\[shipping_tax\]/', $order->get_shipping_tax(), $value);
-			preg_replace('/\[shipping_to_display\]/', $order->get_shipping_to_display(), $value);
-			preg_replace('/\[shipping_total\]/', $order->get_shipping_total(), $value);
-			preg_replace('/\[status\]/', $order->get_status(), $value);
-			preg_replace('/\[subtotal\]/', $order->get_subtotal(), $value);
-			preg_replace('/\[subtotal_to_display\]/', $order->get_subtotal_to_display(), $value);
-			preg_replace('/\[total\]/', $order->get_total(), $value);
-			preg_replace('/\[total_discount\]/', $order->get_total_discount(), $value);
-			preg_replace('/\[total_fees\]/', $order->get_total_fees(), $value);
-			preg_replace('/\[total_qty_refunded\]/', $order->get_total_qty_refunded(), $value);
-			preg_replace('/\[total_refunded\]/', $order->get_total_refunded(), $value);
-			preg_replace('/\[total_shipping\]/', $order->get_total_shipping(), $value);
-			preg_replace('/\[total_shipping_refunded\]/', $order->get_total_shipping_refunded(), $value);
-			preg_replace('/\[total_tax\]/', $order->get_total_tax(), $value);
-			preg_replace('/\[total_tax_refunded\]/', $order->get_total_tax_refunded(), $value);
-			preg_replace('/\[user_id\]/', $order->get_user_id(), $value);
+			$value = preg_replace('/\[billing_address_1\]/', $order->get_billing_address_1(), $value);
+			$value = preg_replace('/\[billing_address_2\]/', $order->get_billing_address_2(), $value);
+			$value = preg_replace('/\[billing_city\]/', $order->get_billing_city(), $value);
+			$value = preg_replace('/\[billing_company\]/', $order->get_billing_company(), $value);
+			$value = preg_replace('/\[billing_country\]/', $order->get_billing_country(), $value);
+			$value = preg_replace('/\[billing_email\]/', $order->get_billing_email(), $value);
+			$value = preg_replace('/\[billing_first_name\]/', $order->get_billing_first_name(), $value);
+			$value = preg_replace('/\[billing_last_name\]/', $order->get_billing_last_name(), $value);
+			$value = preg_replace('/\[billing_phone\]/', $order->get_billing_phone(), $value);
+			$value = preg_replace('/\[billing_postcode\]/', $order->get_billing_postcode(), $value);
+			$value = preg_replace('/\[billing_state\]/', $order->get_billing_state(), $value);
+			$value = preg_replace('/\[cart_tax\]/', $order->get_cart_tax(), $value);
+			$value = preg_replace('/\[currency\]/', $order->get_currency(), $value);
+			$value = preg_replace('/\[customer_id\]/', $order->get_customer_id(), $value);
+			$value = preg_replace('/\[customer_ip_address\]/', $order->get_customer_ip_address(), $value);
+			$value = preg_replace('/\[customer_user_agent\]/', $order->get_customer_user_agent(), $value);
+			$value = preg_replace('/\[date_completed\]/', $order->get_date_completed()->__toString(), $value);
+			$value = preg_replace('/\[date_created\]/', $order->get_date_created()->__toString(), $value);
+			$value = preg_replace('/\[date_modified\]/', $order->get_date_modified()->__toString(), $value);
+			$value = preg_replace('/\[date_paid\]/', $order->get_date_paid()->__toString, $value);
+			$value = preg_replace('/\[discount_tax\]/', $order->get_discount_tax(), $value);
+			$value = preg_replace('/\[discount_to_display\]/', $order->get_discount_to_display(), $value);
+			$value = preg_replace('/\[discount_total\]/', $order->get_discount_total(), $value);
+			$value = preg_replace('/\[formatted_billing_address\]/', $order->get_formatted_billing_address(), $value);
+			$value = preg_replace('/\[formatted_billing_full_name\]/', $order->get_formatted_billing_full_name(), $value);
+			$value = preg_replace('/\[formatted_order_total\]/', $order->get_formatted_order_total(), $value);
+			$value = preg_replace('/\[formatted_shipping_address\]/', $order->get_formatted_shipping_address(), $value);
+			$value = preg_replace('/\[formatted_shipping_full_name\]/', $order->get_formatted_shipping_full_name(), $value);
+			$value = preg_replace('/\[id\]/', $order->get_id(), $value);
+			$value = preg_replace('/\[order_number\]/', $order->get_order_number(), $value);
+			$value = preg_replace('/\[payment_method\]/', $order->get_payment_method(), $value);
+			$value = preg_replace('/\[payment_method_title\]/', $order->get_payment_method_title(), $value);
+			$value = preg_replace('/\[shipping_address_1\]/', $order->get_shipping_address_1(), $value);
+			$value = preg_replace('/\[shipping_address_2\]/', $order->get_shipping_address_2(), $value);
+			$value = preg_replace('/\[shipping_city\]/', $order->get_shipping_city(), $value);
+			$value = preg_replace('/\[shipping_company\]/', $order->get_shipping_company(), $value);
+			$value = preg_replace('/\[shipping_country\]/', $order->get_shipping_country(), $value);
+			$value = preg_replace('/\[shipping_first_name\]/', $order->get_shipping_first_name(), $value);
+			$value = preg_replace('/\[shipping_last_name\]/', $order->get_shipping_last_name(), $value);
+			$value = preg_replace('/\[shipping_method\]/', $order->get_shipping_method(), $value);
+			$value = preg_replace('/\[shipping_postcode\]/', $order->get_shipping_postcode(), $value);
+			$value = preg_replace('/\[shipping_state\]/', $order->get_shipping_state(), $value);
+			$value = preg_replace('/\[shipping_tax\]/', $order->get_shipping_tax(), $value);
+			$value = preg_replace('/\[shipping_to_display\]/', $order->get_shipping_to_display(), $value);
+			$value = preg_replace('/\[shipping_total\]/', $order->get_shipping_total(), $value);
+			$value = preg_replace('/\[status\]/', $order->get_status(), $value);
+			$value = preg_replace('/\[subtotal\]/', $order->get_subtotal(), $value);
+			$value = preg_replace('/\[subtotal_to_display\]/', $order->get_subtotal_to_display(), $value);
+			$value = preg_replace('/\[total\]/', $order->get_total(), $value);
+			$value = preg_replace('/\[total_discount\]/', $order->get_total_discount(), $value);
+			$value = preg_replace('/\[total_fees\]/', $order->get_total_fees(), $value);
+			$value = preg_replace('/\[total_qty_refunded\]/', $order->get_total_qty_refunded(), $value);
+			$value = preg_replace('/\[total_refunded\]/', $order->get_total_refunded(), $value);
+			$value = preg_replace('/\[total_shipping\]/', $order->get_total_shipping(), $value);
+			$value = preg_replace('/\[total_shipping_refunded\]/', $order->get_total_shipping_refunded(), $value);
+			$value = preg_replace('/\[total_tax\]/', $order->get_total_tax(), $value);
+			$value = preg_replace('/\[total_tax_refunded\]/', $order->get_total_tax_refunded(), $value);
+			$value = preg_replace('/\[user_id\]/', $order->get_user_id(), $value);
 			$itemlist = "";
 			foreach($order->get_items() as $item) {
 				$itemlist .= $item->get_name() . " (x" . $item->get_quantity() . ")\n";
 			}
-			preg_replace('/\[items\]/', $itemlist, $value);
+			$value = preg_replace('/\[items\]/', $itemlist, $value);
 			$paramstr .= "&" . $key . "=" . urlencode($value);
 		}
+		
+		
 	}
 	wp_remote_get($url.$paramstr);
 	for($i=$last_event+1; $i<=$count; $i++) {
