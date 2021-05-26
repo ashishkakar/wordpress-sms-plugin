@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Logon Utility SMS
- * Plugin URI: https://github.com/ashishkakar/wordpress-sms-plugin.git
+ * Plugin URI: https://www.logonutility.com/plugins/wordpress.zip
  * Description: This plugin is used to add SMS functionality to yur Wordpress site. 
  * Version: 1.0.2
  * Requires at least: 5.7.1
@@ -168,7 +168,7 @@ function call_sms_api($var1=null, $var2=null, $var3=null, $var4=null, $var5=null
 	$params["msg"] = esc_attr(get_option('message'.$last_event));
 	$entityid = esc_attr(get_option('entityid'.$last_event));
 	$templateid = esc_attr(get_option('templateid'.$last_event));
-	$params["tlv"] = urlencode(json_encode(array('EntityID'=>$entityid, 'ContentID'=>$templateid)));
+	$params["tlv"] = json_encode(array('EntityID'=>$entityid, 'ContentID'=>$templateid));
 	$paramstr = "?type=text";
 	$url = "https://module.logonutility.com/smsapi/index";
 	if((current_filter()=='woocommerce_order_status_completed' || current_filter()=='woocommerce_order_status_cancelled'  || current_filter()=='woocommerce_order_status_pending' || current_filter()=='woocommerce_order_status_failed' || current_filter()=='woocommerce_order_status_on-hold' || current_filter()=='woocommerce_order_status_processing' || current_filter()=='woocommerce_order_status_refunded') && $var1!=null) {
@@ -190,10 +190,6 @@ function call_sms_api($var1=null, $var2=null, $var3=null, $var4=null, $var5=null
 			$value = preg_replace('/\[customer_id\]/', $order->get_customer_id(), $value);
 			$value = preg_replace('/\[customer_ip_address\]/', $order->get_customer_ip_address(), $value);
 			$value = preg_replace('/\[customer_user_agent\]/', $order->get_customer_user_agent(), $value);
-			$value = preg_replace('/\[date_completed\]/', $order->get_date_completed()->__toString(), $value);
-			$value = preg_replace('/\[date_created\]/', $order->get_date_created()->__toString(), $value);
-			$value = preg_replace('/\[date_modified\]/', $order->get_date_modified()->__toString(), $value);
-			$value = preg_replace('/\[date_paid\]/', $order->get_date_paid()->__toString, $value);
 			$value = preg_replace('/\[discount_tax\]/', $order->get_discount_tax(), $value);
 			$value = preg_replace('/\[discount_to_display\]/', $order->get_discount_to_display(), $value);
 			$value = preg_replace('/\[discount_total\]/', $order->get_discount_total(), $value);
